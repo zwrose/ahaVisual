@@ -1,0 +1,6 @@
+<h2>Active Aha! Account: <%= subdomain %> | Active Product: <%= product %></h2>
+<form action="/tree" method="post">
+  <input type="text" placeholder="Feature Key" name="featureKey"></input>
+  <input type="submit" value="Generate Dependency Tree"></input>
+  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
