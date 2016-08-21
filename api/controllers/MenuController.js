@@ -14,7 +14,6 @@ module.exports = {
     */
   auth: function (req, res) {
     req.session.subdomain = req.param('subdomain').toLowerCase();
-    req.session.product = req.param('product').toUpperCase();
     return res.redirect('https://' + req.param('subdomain').toLowerCase() + '.aha.io/oauth/authorize?client_id=703a5ff2d4c8328852e20ac8b18dd8b840e1215202291831a23888ad554917bf&redirect_uri=https%3A%2F%2Fnode-playground-161360.nitrousapp.com%2Fmenu&response_type=code')
   },
 
@@ -35,7 +34,6 @@ module.exports = {
           redirect_uri: 'https://node-playground-161360.nitrousapp.com/menu'
         }
       }, function(err, response, body){
-        console.log(response.statusCode);
         if(response.statusCode == 200) {
           req.session.token = JSON.parse(body).access_token;
           return res.view('menu', {

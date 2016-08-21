@@ -1,6 +1,12 @@
-<h2>Active Aha! Account: <%= subdomain %> | Active Product: <%= product %></h2>
-<form action="/tree" method="post">
-  <input type="text" placeholder="Feature Key" name="featureKey"></input>
+<h2>Active Aha! Account: <%= subdomain %></h2>
+<form action="visual/tree" method="post">
+  <input type="text" placeholder="Feature Reference Number" name="reference_num"></input>
+  <select name="filter">
+    <option value="all" selected>All Feature Info</option>
+    <option value="description" >Description Info Only</option>
+    <option value="requirements" >Requirements Info Only</option>
+    <option value="relations" >Relational Info Only</option>
+  </select>
   <input type="submit" value="Generate Dependency Tree"></input>
   <input type="hidden" name="_csrf" value="<%= _csrf %>" />
 </form>
