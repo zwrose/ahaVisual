@@ -1,0 +1,27 @@
+<div class="container">
+
+  <% features.forEach(function(feature) { %>
+    <div class="row">
+      <div class="one-third column">
+        <%= feature.reference_num %> | Priority: <%= feature.position %>
+        <h3><strong><%= feature.name %></strong></h3>
+        <%- feature.description.body %>
+        <hr class="u-hide-big">
+      </div>
+      <div class="two-thirds column">
+        <% if(feature.requirements.length == 0) { %>
+          <p>No additional requirements listed</p>
+        <% } else { %>
+          <% feature.requirements.forEach(function(requirement, idx, arr) { %>
+            <%= requirement.reference_num %> | <strong><%= requirement.name %></strong>
+            <br>
+            <%- requirement.description.body %>
+            <% if(idx < arr.length - 1) { %><hr><% } %>
+          <% }) %>
+        <% } %>
+      </div>
+    </div>
+    <hr class="fat">
+  <% }) %>
+
+</div>

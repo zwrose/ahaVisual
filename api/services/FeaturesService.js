@@ -69,5 +69,40 @@ module.exports = {
         })
       }
     });
+  },
+  
+  /**
+   * Return returns a list of features for a product.
+   *
+   * @required {String} productId
+   *   The unique Aha identifier prefix for the product.
+   * @required {String} subdomain
+   *   The Aha account containing the feature.
+   * @required {String} token
+   *   The Aha API auth token
+   * @returns {Object}
+   *   Contains a list of features
+   */
+  getProductFeatures: function(options, done) {
+    request({
+      method: 'GET',
+      url: 'https://' + options.subdomain + '.aha.io/api/v1/products/' + options.productId.toUpperCase() + '/features',
+      headers: {
+        'Authorization': 'Bearer ' + options.token,
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      }
+    }, function(err, response, body) {
+      if(response.statusCode == 200){
+        return done(JSON.parse(body));
+      } else {
+        return done({
+          errorMsg: 'Something went wrong with the request to Aha.',
+          statusCode: response.statusCode,
+          err: err,
+          response: response
+        })
+      }
+    });
   }
 };

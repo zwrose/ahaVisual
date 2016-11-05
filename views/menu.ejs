@@ -1,6 +1,7 @@
 <h2>Active Aha! Account: <%= subdomain %></h2>
+<!-- Dependency Tree -->
 <form action="visual/tree" method="post">
-  <input type="text" placeholder="Feature Reference Number" name="reference_num"></input>
+  <input type="text" placeholder="Feature Reference #" name="reference_num"></input>
   <select name="filter">
     <option value="all" selected>All Feature Info</option>
     <option value="description" >Description Info Only</option>
@@ -8,5 +9,11 @@
     <option value="relations" >Relational Info Only</option>
   </select>
   <input type="submit" value="Generate Dependency Tree"></input>
+  <input type="hidden" name="_csrf" value="<%= _csrf %>" />
+</form>
+<!-- PD View -->
+<form action="visual/pdView" method="post">
+  <input type="text" placeholder="Product ID" name="productId"></input>
+  <input type="submit" value="Generate PD View"></input>
   <input type="hidden" name="_csrf" value="<%= _csrf %>" />
 </form>
